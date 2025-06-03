@@ -1,0 +1,37 @@
+﻿@model fiap.web.alunos.Models.ClienteModel;
+
+@{
+	ViewData["Title"] = "Detalhes";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<div>
+			<label for="display_id" bold>ID:</label>
+			<p>@Model.IdCliente</p>
+		</div>
+
+		<div>
+			<label for="display_nome" bold>Nome:</label>
+			<p id="display_nome">@Model.Nome</p>
+		</div>
+
+		<div>
+			<label for="display_cpf" bold>CPF:</label>
+			<p id="display_cpf">@Model.Cpf</p>
+		</div>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">Voltar para a Lista</a>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

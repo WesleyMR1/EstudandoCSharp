@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ClienteModel>
+
+@{
+    string successMessage = TempData["SuccessMessage"] as string;
+    string errorMessage = TempData["ErrorMessage"] as string; // Exemplo para mensagem de erro
+}
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success" role="alert">
+        @successMessage
+    </div>
+}
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+}
+@{
+    ViewData["Title"] = "Lista Simples de Clientes";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    Esta é uma lista **simples** de clientes, sem interação com um banco de dados real.
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>IdCliente</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.IdCliente</td>
+                <td>@cliente.Nome</td>
+                <td>@cliente.Cpf</td>
+                <td>
+                    <a asp-asp-controller="Cliente" asp-action="Edit" asp-route-id="@cliente.IdCliente">Editar</a>
+                    <a asp-asp-controller="Cliente" asp-action="Details" asp-route-id="@cliente.IdCliente">Consultar</a>
+                    <a asp-asp-controller="Cliente" asp-action="Delete" asp-route-id="@cliente.IdCliente">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a href="/">Voltar para a Página Inicial</a> @* Exemplo de link para voltar *@
+</p>
