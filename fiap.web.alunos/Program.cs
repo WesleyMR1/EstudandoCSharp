@@ -1,4 +1,5 @@
 using fiap.web.alunos.Data;
+using fiap.web.alunos.Logging;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,10 @@ builder.Services.AddDbContext<DatabaseContext>(
     opt => opt.UseOracle(connectionString).EnableSensitiveDataLogging(true)
     );
 
+#endregion
+
+#region Registro IServiceCollection
+builder.Services.AddSingleton<ICustomLogger, FileLogger>();
 #endregion
 
 var app = builder.Build();
